@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ListItem } from './';
-import Colleague from '../Colleague';
+import { Colleague } from '../';
 
 const ListItems = styled.ul`
   display: flex;

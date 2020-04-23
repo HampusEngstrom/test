@@ -1,10 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  GitHubButton,
-  TwitterButton,
-  LinkedInButton,
-} from './SocialMediaButtons';
+import { GitHubButton, TwitterButton, LinkedInButton } from './';
 
 const SocialMedia = styled.div``;
 
