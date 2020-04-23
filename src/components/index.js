@@ -1,4 +1,4 @@
-import List from './List';
+import List from './List/List';
 import ConditionalRender from './ConditionalRender';
 import LoadingSpinner from './LoadingSpinner';
 
