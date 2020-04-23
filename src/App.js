@@ -1,17 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import data from './data';
 import { List } from './components';
+import axios from 'axios';
+import { ConditionalRender, LoadingSpinner } from './components';
 import './App.css';
+const URL = 'https://api.tretton37.com/ninjas';
 
 function App() {
   const [colleagues, setColleagues] = useState([]);
+  const [isFetching, setIsFetching] = useState(true);
+
   useEffect(() => {
-    setColleagues(data);
-    console.log(data);
+    axios(URL).then(({ data }) => {
+      setColleagues(data);
+      setIsFetching(false);
+    });
   }, []);
+
   return (
     <div className="App">
-      <List items={colleagues}></List>
+      <ConditionalRender
+        condition={!isFetching}
+        fallback={<LoadingSpinner />}
+      >
+        <List items={colleagues} />
+      </ConditionalRender>
     </div>
   );
 }

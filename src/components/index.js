@@ -1,3 +1,5 @@
 import List from './List';
+import ConditionalRender from './ConditionalRender';
+import LoadingSpinner from './LoadingSpinner';
 
-export {List};
+export { List, ConditionalRender, LoadingSpinner };
