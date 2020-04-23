@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { List } from './components';
 import axios from 'axios';
 import { ConditionalRender, LoadingSpinner } from './components';
+import Colleagues from './layout/Colleagues';
 import './App.css';
 const URL = 'https://api.tretton37.com/ninjas';
 
@@ -22,7 +22,7 @@ function App() {
         condition={!isFetching}
         fallback={<LoadingSpinner />}
       >
-        <List items={colleagues} />
+        <Colleagues colleagues={colleagues} />
       </ConditionalRender>
     </div>
   );
