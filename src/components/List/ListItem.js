@@ -6,8 +6,16 @@ const Item = styled.li`
   flex-direction: column;
   list-style: none;
   border: 1px solid gray;
-  width: 180px;
-  margin: 20px;
+  width: 100%;
+  min-width: 180px;
+  margin: 10px;
+
+  @media (min-width: 480px) {
+    width: calc(45% - 20px);
+  }
+  @media (min-width: 768px) {
+    width: 225px;
+  }
 `;
 
 const ListItem = (props) => <Item>{props.children}</Item>;
