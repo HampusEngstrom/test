@@ -22,7 +22,10 @@ function App() {
         condition={!isFetching}
         fallback={<LoadingSpinner />}
       >
-        <Colleagues colleagues={colleagues} />
+        <Colleagues
+          colleagues={colleagues}
+          setColleagues={setColleagues}
+        />
       </ConditionalRender>
     </div>
   );

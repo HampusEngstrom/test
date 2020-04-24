@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sort test sort by key 1`] = `
+Array [
+  Object {
+    "key": "a1",
+  },
+  Object {
+    "key": "a2",
+  },
+  Object {
+    "key": "a3",
+  },
+]
+`;
+
+exports[`sort test sort by key numbers 1`] = `
+Array [
+  Object {
+    "key": 1,
+  },
+  Object {
+    "key": 2,
+  },
+  Object {
+    "key": 3,
+  },
+]
+`;
+
+exports[`sort test sort by undefined key 1`] = `
+Array [
+  Object {
+    "key": "a2",
+  },
+  Object {
+    "key": "a1",
+  },
+  Object {
+    "key": "a3",
+  },
+]
+`;
