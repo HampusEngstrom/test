@@ -6,12 +6,12 @@ import './App.css';
 const URL = 'https://api.tretton37.com/ninjas';
 
 function App() {
-  const [colleagues, setColleagues] = useState([]);
+  const [allColleagues, setAllColleagues] = useState(true);
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
     axios(URL).then(({ data }) => {
-      setColleagues(data);
+      setAllColleagues(data);
       setIsFetching(false);
     });
   }, []);
@@ -23,8 +23,7 @@ function App() {
         fallback={<LoadingSpinner />}
       >
         <Colleagues
-          colleagues={colleagues}
-          setColleagues={setColleagues}
+          allColleagues={allColleagues}
         />
       </ConditionalRender>
     </div>

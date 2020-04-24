@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test toMap returns map 1`] = `
+Object {
+  "1": Object {
+    "id": "1",
+  },
+  "2": Object {
+    "id": "2",
+  },
+  "3": Object {
+    "id": "3",
+  },
+  "4": Object {
+    "id": "4",
+  },
+}
+`;
+
+exports[`test toMap returns map for duplicate 1`] = `
+Object {
+  "1": Object {
+    "id": "1",
+    "name": "hej1",
+  },
+  "2": Object {
+    "id": "2",
+    "name": "hej2",
+  },
+  "3": Object {
+    "id": "3",
+    "name": "hej3",
+  },
+  "4": Object {
+    "id": "4",
+    "name": "hej5",
+  },
+}
+`;

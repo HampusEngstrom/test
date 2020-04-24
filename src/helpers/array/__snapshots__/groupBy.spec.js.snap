@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test groupBy returns grouped object 1`] = `
+Object {
+  "b1": Array [
+    Object {
+      "a": "a1",
+      "b": "b1",
+      "id": "1",
+    },
+    Object {
+      "a": "a2",
+      "b": "b1",
+      "id": "3",
+    },
+  ],
+  "b2": Array [
+    Object {
+      "a": "a2",
+      "b": "b2",
+      "id": "2",
+    },
+  ],
+}
+`;

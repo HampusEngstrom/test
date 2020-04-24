@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { List } from './../components';
-import Filter from '../features/Filter';
+import FilterAndSort from '../features/FilterAndSort';
 
 const Container = styled.div`
   width: 100%;
@@ -37,16 +37,18 @@ const ListContainer = styled.div`
   }
 `;
 
-const Colleagues = ({ colleagues, setColleagues }) => {
-  const onFilter = (newItems) => {
-    setColleagues(newItems);
-  };
+const Colleagues = ({ allColleagues }) => {
+  const [colleagues, setColleagues] = useState(allColleagues);
+
   return (
     <Container>
       <h1>The fellowship of the tretton37</h1>
-      <Filter onFilter={onFilter} items={colleagues} />
+      <FilterAndSort
+        onFilter={setColleagues}
+        allItems={allColleagues}
+      />
       <ListContainer>
-        <List items={colleagues} />
+        <List items={colleagues} allItems={allColleagues} />
       </ListContainer>
     </Container>
   );
