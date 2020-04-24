@@ -11,16 +11,14 @@ const ListItems = styled.ul`
   padding: 0;
 `;
 
-const List = ({ items }) => {
-  return (
-    <ListItems>
-      {items.map((item, index) => (
-        <ListItem key={index}>
-          <Colleague item={item} />
-        </ListItem>
-      ))}
-    </ListItems>
-  );
-};
+const List = ({ items }) => (
+  <ListItems>
+    {items.map((item, index) => (
+      <ListItem key={index}>
+        <Colleague item={item} />
+      </ListItem>
+    ))}
+  </ListItems>
+);
 
 export default List;

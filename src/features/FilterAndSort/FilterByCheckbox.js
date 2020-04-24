@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { getUniques } from '../../helpers';
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
 `;
-
-const removeDuplicates = (arr) => [...new Set(arr)];
 
 const TextCheckbox = styled.div`
   display: flex;
@@ -21,7 +20,7 @@ const TextCheckbox = styled.div`
 `;
 
 const FilterByCheckbox = ({ allItems, handleChange, active }) => {
-  const alts = removeDuplicates(
+  const alts = getUniques(
     allItems.reduce((acc, item) => [...acc, item.office], []),
   );
   return (
