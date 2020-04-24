@@ -10,7 +10,7 @@ export const Label = styled.label`
 export const Row = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
   padding: 15px;
   box-sizing: border-box;

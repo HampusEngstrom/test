@@ -19,9 +19,14 @@ const TextCheckbox = styled.div`
   color: ${({ isActive }) => (isActive ? 'white' : 'black')};
 `;
 
-const FilterByCheckbox = ({ allItems, handleChange, active }) => {
+const FilterByCheckbox = ({
+  allItems,
+  handleChange,
+  filterByAttr,
+  active,
+}) => {
   const alts = getUniques(
-    allItems.reduce((acc, item) => [...acc, item.office], []),
+    allItems.reduce((acc, item) => [...acc, item[filterByAttr]], []),
   );
   return (
     <Container>

@@ -4,6 +4,7 @@ import {
   GitHubButton,
   TwitterButton,
   LinkedInButton,
+  StackOverflowButton,
   TextRow,
   Text,
 } from './';
@@ -34,6 +35,7 @@ const Colleague = ({ item: colleague }) => (
           <GitHubButton url={colleague.gitHub} />
           <TwitterButton url={colleague.twitter} />
           <LinkedInButton url={colleague.linkedIn} />
+          <StackOverflowButton url={colleague.stackOverflow} />
         </SocialMedia>
       </TextRow>
       <TextRow>

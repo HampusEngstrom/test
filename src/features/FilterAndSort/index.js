@@ -1,13 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import SortBy from './SortBy';
+
 import FilterByCheckbox from './FilterByCheckbox';
 import FilterByText from './FilterByText';
+import FilterByBoolean from './FilterByBoolean';
+
+import GithubIcon from '../../assets/github.png';
+import StackOverflowIcon from '../../assets/stack-overflow.png';
+import LinkedInIcon from '../../assets/linkedin.png';
+import TwitterIcon from '../../assets/twitter.png';
+
 import { sort } from '../../helpers/array/';
 import { Row } from '../../components';
 
 const NAME = 'name';
 const OFFICE = 'office';
+const GITHUB = 'gitHub';
+const LINKEDIN = 'linkedIn';
+const TWITTER = 'twitter';
+const STACKOVERFLOW = 'stackOverflow';
 
 const FilterContainer = styled.div`
   width: calc(100% - 20px);
@@ -22,10 +34,23 @@ const FilterContainer = styled.div`
   flex-wrap: wrap;
 `;
 
+const SocialMediaFilter = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 class FilterAndSort extends React.PureComponent {
   state = {
     activeSort: null,
-    activeFilter: { [OFFICE]: [] },
+    activeFilter: {
+      [OFFICE]: [],
+    },
+    activeBooleanFilter: {
+      [GITHUB]: false,
+      [LINKEDIN]: false,
+      [TWITTER]: false,
+      [STACKOVERFLOW]: false,
+    },
     activeTextFilter: {},
   };
 
@@ -63,6 +88,19 @@ class FilterAndSort extends React.PureComponent {
     }
   };
 
+  toggleFilterBoolean = (key) => () => {
+    this.setState(
+      (state) => ({
+        ...state,
+        activeBooleanFilter: {
+          ...state.activeBooleanFilter,
+          [key]: !state.activeBooleanFilter[key],
+        },
+      }),
+      this.update,
+    );
+  };
+
   setFilterText = (key) => (value) => {
     this.setState(
       (state) => ({
@@ -74,11 +112,20 @@ class FilterAndSort extends React.PureComponent {
   };
 
   update() {
-    const { activeFilter, activeSort, activeTextFilter } = this.state;
+    const {
+      activeFilter,
+      activeSort,
+      activeTextFilter,
+      activeBooleanFilter,
+    } = this.state;
+
     const activeFilterKeys = Object.keys(activeFilter).filter(
       (key) => activeFilter[key].length > 0,
     );
     const activeTextFilterKeys = Object.keys(activeTextFilter);
+    const activeBooleanFilterKeys = Object.keys(
+      activeBooleanFilter,
+    ).filter((key) => activeBooleanFilter[key]);
 
     const filteredItems = this.props.allItems
       .filter((item) => {
@@ -92,6 +139,12 @@ class FilterAndSort extends React.PureComponent {
           (key) => item[key].indexOf(activeTextFilter[key]) === 0,
         );
         return textOK;
+      })
+      .filter((item) => {
+        const booleansOK = activeBooleanFilterKeys.every(
+          (key) => item[key],
+        );
+        return booleansOK;
       });
 
     sort(filteredItems)(activeSort);
@@ -120,6 +173,32 @@ class FilterAndSort extends React.PureComponent {
             handleChange={this.toggleFilterAttr(OFFICE)}
             active={this.state.activeFilter[OFFICE]}
           />
+          <SocialMediaFilter>
+            <FilterByBoolean
+              handleChange={this.toggleFilterBoolean(GITHUB)}
+              active={this.state.activeBooleanFilter[GITHUB]}
+            >
+              {<img src={GithubIcon} alt="" />}
+            </FilterByBoolean>
+            <FilterByBoolean
+              handleChange={this.toggleFilterBoolean(STACKOVERFLOW)}
+              active={this.state.activeBooleanFilter[STACKOVERFLOW]}
+            >
+              {<img src={StackOverflowIcon} alt="" />}
+            </FilterByBoolean>
+            <FilterByBoolean
+              handleChange={this.toggleFilterBoolean(LINKEDIN)}
+              active={this.state.activeBooleanFilter[LINKEDIN]}
+            >
+              {<img src={LinkedInIcon} alt="" />}
+            </FilterByBoolean>
+            <FilterByBoolean
+              handleChange={this.toggleFilterBoolean(TWITTER)}
+              active={this.state.activeBooleanFilter[TWITTER]}
+            >
+              {<img src={TwitterIcon} alt="" />}
+            </FilterByBoolean>
+          </SocialMediaFilter>
         </Row>
       </FilterContainer>
     );
