@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { List } from './../components';
+import { List, InfinityScroll } from './../components';
 import FilterAndSort from '../features/FilterAndSort';
 
 const Container = styled.div`
@@ -48,7 +48,10 @@ const Colleagues = ({ allColleagues }) => {
         allItems={allColleagues}
       />
       <ListContainer>
-        <List items={colleagues} allItems={allColleagues} />
+        <InfinityScroll
+          items={colleagues}
+          render={({ setOfItems }) => <List items={setOfItems} />}
+        ></InfinityScroll>
       </ListContainer>
     </Container>
   );
