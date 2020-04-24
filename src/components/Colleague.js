@@ -1,6 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GitHubButton, TwitterButton, LinkedInButton } from './';
+import {
+  GitHubButton,
+  TwitterButton,
+  LinkedInButton,
+  TextRow,
+  Text,
+} from './';
 
 const SocialMedia = styled.div``;
 
@@ -9,18 +15,6 @@ const Avatar = ({ src }) => (
     <img src={src} alt="" />
   </div>
 );
-
-const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-`;
-
-const Text = styled.div`
-  margin: 0;
-  padding: 0;
-`;
 
 const Info = styled.div`
   display: flex;
@@ -34,17 +28,17 @@ const Colleague = ({ item: colleague }) => (
   <>
     <Avatar src={colleague.imagePortraitUrl} />
     <Info>
-      <Row>
+      <TextRow>
         <Text>{colleague.name}</Text>
         <SocialMedia>
           <GitHubButton url={colleague.gitHub} />
           <TwitterButton url={colleague.twitter} />
           <LinkedInButton url={colleague.linkedIn} />
         </SocialMedia>
-      </Row>
-      <Row>
+      </TextRow>
+      <TextRow>
         <Text>{`Office: ${colleague.office}`}</Text>
-      </Row>
+      </TextRow>
     </Info>
   </>
 );
