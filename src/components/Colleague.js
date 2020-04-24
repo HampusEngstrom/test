@@ -10,15 +10,43 @@ const Avatar = ({ src }) => (
   </div>
 );
 
+const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+`;
+
+const Text = styled.div`
+  margin: 0;
+  padding: 0;
+`;
+
+const Info = styled.div`
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: red;
+`;
+
 const Colleague = ({ item: colleague }) => (
   <>
     <Avatar src={colleague.imagePortraitUrl} />
-    <p>{colleague.name}</p>
-    <SocialMedia>
-      <GitHubButton url={colleague.gitHub} />
-      <TwitterButton url={colleague.twitter} />
-      <LinkedInButton url={colleague.linkedIn} />
-    </SocialMedia>
+    <Info>
+      <Row>
+        <Text>{colleague.name}</Text>
+        <SocialMedia>
+          <GitHubButton url={colleague.gitHub} />
+          <TwitterButton url={colleague.twitter} />
+          <LinkedInButton url={colleague.linkedIn} />
+        </SocialMedia>
+      </Row>
+      <Row>
+        <Text>{`Office: ${colleague.office}`}</Text>
+      </Row>
+    </Info>
   </>
 );
 
