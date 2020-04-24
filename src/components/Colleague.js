@@ -28,7 +28,6 @@ const Info = styled.div`
   width: 100%;
   flex-direction: column;
   justify-content: space-between;
-  background-color: red;
 `;
 
 const Colleague = ({ item: colleague }) => (

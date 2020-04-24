@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const SortContainer = styled.div`
   display: flex;
-  background-color: red;
   flex-direction: column;
   align-items: center;
   select {
