@@ -4,15 +4,15 @@ class InfinityScroll extends React.PureComponent {
   state = { index: 12 };
 
   onScroll = () => {
-    if (
-      this.getScrollRate() > 0.9 &&
-      this.state.index < this.props.items.length
-    ) {
+    const moreItemsExists =
+      this.state.index < this.props.items.length;
+    const scrollProgress = this.getScrollProgress();
+    if (scrollProgress > 0.9 && moreItemsExists) {
       this.setState(({ index }) => ({ index: index + index / 2 }));
     }
   };
 
-  getScrollRate = () =>
+  getScrollProgress = () =>
     window.pageYOffset /
     (document.body.scrollHeight - window.innerHeight);
 

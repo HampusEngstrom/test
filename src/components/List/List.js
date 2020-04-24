@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ListItem } from './';
-import { Colleague } from '../';
 
 const ListItems = styled.ul`
   display: flex;
@@ -11,11 +10,11 @@ const ListItems = styled.ul`
   padding: 0;
 `;
 
-const List = ({ items }) => (
+const List = ({ items, Element }) => (
   <ListItems>
     {items.map((item, index) => (
       <ListItem key={index}>
-        <Colleague item={item} />
+        <Element item={item} />
       </ListItem>
     ))}
   </ListItems>

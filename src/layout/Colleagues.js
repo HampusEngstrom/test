@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { List, InfinityScroll } from './../components';
 import FilterAndSort from '../features/FilterAndSort';
+import { Colleague } from '../components/';
 
 const Container = styled.div`
   width: 100%;
@@ -50,7 +51,9 @@ const Colleagues = ({ allColleagues }) => {
       <ListContainer>
         <InfinityScroll
           items={colleagues}
-          render={({ setOfItems }) => <List items={setOfItems} />}
+          render={({ setOfItems }) => (
+            <List items={setOfItems} Element={Colleague} />
+          )}
         ></InfinityScroll>
       </ListContainer>
     </Container>
