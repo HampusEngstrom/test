@@ -1,4 +1,4 @@
-import ConditionalRender from './';
+import { ConditionalRender } from './';
 
 describe('ConditionalRender', () => {
   it('Conditional returns fallback: condition = false', () => {

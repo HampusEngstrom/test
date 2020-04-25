@@ -1,4 +1,5 @@
-const ConditionalRender = ({ condition, fallback, children }) =>
-  condition ? children : fallback || null;
-
-export default ConditionalRender;
+export const ConditionalRender = ({
+  condition,
+  fallback,
+  children,
+}) => (condition ? children : fallback || null);

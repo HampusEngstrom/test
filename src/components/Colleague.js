@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {
   GitHubButton,
@@ -7,46 +7,13 @@ import {
   StackOverflowButton,
   TextRow,
   Text,
-  SmallLoadingSpinner,
-  ConditionalRender,
 } from './';
+
+import { Avatar } from './Avatar';
 
 const SocialMedia = styled.div`
   min-height: 25px;
 `;
-
-const AvatarContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex-grow: 1;
-  min-height: 200px;
-  img {
-    z-index: 1;
-    transform: scale(1.15);
-    padding-top: 10%;
-  }
-`;
-
-const ImageContainer = styled.div`
-  width: 100%;
-  overflow: hidden;
-  text-align: center;
-  opacity: ${({ isLoaded }) => (isLoaded ? 1 : 0)};
-`;
-
-const Avatar = ({ src }) => {
-  const [loaded, setLoaded] = useState(false);
-  return (
-    <AvatarContainer>
-      <ConditionalRender condition={!loaded}>
-        <SmallLoadingSpinner />
-      </ConditionalRender>
-      <ImageContainer isLoaded={loaded}>
-        <img src={src} alt="" onLoad={() => setLoaded(true)} />
-      </ImageContainer>
-    </AvatarContainer>
-  );
-};
 
 const Info = styled.div`
   display: flex;
@@ -57,7 +24,7 @@ const Info = styled.div`
   padding-top: 10px;
 `;
 
-const Colleague = ({ item: colleague }) => (
+export const Colleague = ({ item: colleague }) => (
   <>
     <Avatar src={colleague.imagePortraitUrl} />
     <Info>
@@ -78,5 +45,3 @@ const Colleague = ({ item: colleague }) => (
     </Info>
   </>
 );
-
-export default Colleague;
