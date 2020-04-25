@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import SortBy from './SortBy';
 
-import FilterByCheckbox from './FilterByCheckbox';
-import FilterByText from './FilterByText';
-import FilterByBoolean from './FilterByBoolean';
+import FilterMultipleChoice from './FilterMultipleChoice';
+import FilterTextInput from './FilterTextInput';
+import FilterSingleChoice from './FilterSingleChoice';
 
 import GithubIcon from '../../assets/github.png';
 import StackOverflowIcon from '../../assets/stack-overflow.png';
@@ -133,7 +133,7 @@ class FilterAndSort extends React.PureComponent {
     return (
       <FilterContainer>
         <Row>
-          <FilterByText
+          <FilterTextInput
             filterByAttr={NAME}
             handleChange={this.setText(NAME)}
             active={this.state.textInput[NAME]}
@@ -145,37 +145,37 @@ class FilterAndSort extends React.PureComponent {
           />
         </Row>
         <Row>
-          <FilterByCheckbox
+          <FilterMultipleChoice
             allItems={this.props.allItems}
             filterByAttr={OFFICE}
             handleChange={this.toggleMultipleChoices(OFFICE)}
             active={this.state.multipleChoices[OFFICE]}
           />
           <SocialMediaFilter>
-            <FilterByBoolean
+            <FilterSingleChoice
               handleChange={this.toggleSingleChoice(GITHUB)}
               active={this.state.singleChoice[GITHUB]}
             >
               {<img src={GithubIcon} alt="" />}
-            </FilterByBoolean>
-            <FilterByBoolean
+            </FilterSingleChoice>
+            <FilterSingleChoice
               handleChange={this.toggleSingleChoice(STACKOVERFLOW)}
               active={this.state.singleChoice[STACKOVERFLOW]}
             >
               {<img src={StackOverflowIcon} alt="" />}
-            </FilterByBoolean>
-            <FilterByBoolean
+            </FilterSingleChoice>
+            <FilterSingleChoice
               handleChange={this.toggleSingleChoice(LINKEDIN)}
               active={this.state.singleChoice[LINKEDIN]}
             >
               {<img src={LinkedInIcon} alt="" />}
-            </FilterByBoolean>
-            <FilterByBoolean
+            </FilterSingleChoice>
+            <FilterSingleChoice
               handleChange={this.toggleSingleChoice(TWITTER)}
               active={this.state.singleChoice[TWITTER]}
             >
               {<img src={TwitterIcon} alt="" />}
-            </FilterByBoolean>
+            </FilterSingleChoice>
           </SocialMediaFilter>
         </Row>
       </FilterContainer>

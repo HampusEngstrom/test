@@ -15,7 +15,7 @@ const Checkbox = styled.div`
   opacity: ${({ isActive }) => (isActive ? 1 : 0.5)};
 `;
 
-const FilterByBoolean = ({ handleChange, active, children }) => (
+const FilterSingleChoice = ({ handleChange, active, children }) => (
   <Container>
     <Checkbox isActive={active} onClick={handleChange}>
       {children}
@@ -23,4 +23,4 @@ const FilterByBoolean = ({ handleChange, active, children }) => (
   </Container>
 );
 
-export default FilterByBoolean;
+export default FilterSingleChoice;

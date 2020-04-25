@@ -15,7 +15,7 @@ const Container = styled.div`
   }
 `;
 
-const FilterByText = ({ filterByAttr, handleChange }) => {
+const FilterTextInput = ({ filterByAttr, handleChange }) => {
   return (
     <Container>
       <Label>{filterByAttr}</Label>
@@ -28,4 +28,4 @@ const FilterByText = ({ filterByAttr, handleChange }) => {
   );
 };
 
-export default FilterByText;
+export default FilterTextInput;

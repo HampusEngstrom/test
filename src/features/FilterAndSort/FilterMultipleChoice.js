@@ -19,7 +19,7 @@ const TextCheckbox = styled.div`
   color: ${({ isActive }) => (isActive ? 'white' : 'black')};
 `;
 
-const FilterByCheckbox = ({
+const FilterMultipleChoice = ({
   allItems,
   handleChange,
   filterByAttr,
@@ -43,4 +43,4 @@ const FilterByCheckbox = ({
   );
 };
 
-export default FilterByCheckbox;
+export default FilterMultipleChoice;
