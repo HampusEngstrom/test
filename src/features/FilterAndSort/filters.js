@@ -6,7 +6,11 @@ export const filterOnSingleChoice = (map) => {
 export const filterOnTextInput = (map) => {
   const keys = Object.keys(map);
   return (item) =>
-    keys.every((key) => item[key].indexOf(map[key]) === 0);
+    keys.every((key) => {
+      const itemValue = item[key].toLowerCase();
+      const mapValue = map[key].toLowerCase();
+      return itemValue.indexOf(mapValue) === 0;
+    });
 };
 
 export const filterOnMultipleChoices = (map) => {

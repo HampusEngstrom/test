@@ -47,7 +47,7 @@ const SocialMediaFilter = styled.div`
 
 class FilterAndSort extends React.PureComponent {
   state = {
-    activeSort: null,
+    sortBy: null,
     multipleChoices: {
       [OFFICE]: [],
     },
@@ -59,7 +59,7 @@ class FilterAndSort extends React.PureComponent {
 
   setSortAttr = (attr) => {
     this.setState(
-      (state) => ({ ...state, activeSort: attr }),
+      (state) => ({ ...state, sortBy: attr }),
       this.update,
     );
   };
@@ -113,7 +113,7 @@ class FilterAndSort extends React.PureComponent {
 
   update() {
     const {
-      activeSort,
+      sortBy,
       multipleChoices,
       textInput,
       singleChoice,
@@ -124,7 +124,7 @@ class FilterAndSort extends React.PureComponent {
       .filter(filterOnTextInput(textInput))
       .filter(filterOnSingleChoice(singleChoice));
 
-    sort(filteredItems)(activeSort);
+    sort(filteredItems)(sortBy);
 
     this.props.onFilter(filteredItems);
   }
@@ -141,7 +141,7 @@ class FilterAndSort extends React.PureComponent {
           <SortBy
             sortByAttrs={this.sortAlternatives}
             handleChange={this.setSortAttr}
-            active={this.state.activeSort}
+            active={this.state.sortBy}
           />
         </Row>
         <Row>
