@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`filter on multiple choices filterOnMultipleChoices returns correct for text: abc 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "text": "abc",
+  },
+  Object {
+    "id": "2",
+    "text": "abc",
+  },
+]
+`;
+
+exports[`filter on multiple choices filterOnMultipleChoices returns correct for text: abc, def 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "text": "abc",
+  },
+  Object {
+    "id": "2",
+    "text": "abc",
+  },
+  Object {
+    "id": "3",
+    "text": "def",
+  },
+]
+`;
+
+exports[`filter on multiple choices filterOnMultipleChoices returns correct for text: empty 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "text": "abc",
+  },
+  Object {
+    "id": "2",
+    "text": "abc",
+  },
+  Object {
+    "id": "3",
+    "text": "def",
+  },
+  Object {
+    "id": "4",
+    "text": "ghi",
+  },
+]
+`;
+
+exports[`filter on single choice filterOnSingleChoice returns correct a 1`] = `
+Array [
+  Object {
+    "a": "hej",
+    "b": "hej",
+    "id": "1",
+  },
+  Object {
+    "a": "hej",
+    "b": null,
+    "id": "2",
+  },
+  Object {
+    "a": "hej",
+    "b": "hej",
+    "id": "4",
+  },
+  Object {
+    "a": "hej",
+    "b": null,
+    "id": "5",
+  },
+]
+`;
+
+exports[`filter on single choice filterOnSingleChoice returns correct a b 1`] = `
+Array [
+  Object {
+    "a": "hej",
+    "b": "hej",
+    "id": "1",
+  },
+  Object {
+    "a": "hej",
+    "b": "hej",
+    "id": "4",
+  },
+]
+`;
+
+exports[`filter on single choice filterOnSingleChoice returns correct b 1`] = `
+Array [
+  Object {
+    "a": "hej",
+    "b": "hej",
+    "id": "1",
+  },
+  Object {
+    "a": null,
+    "b": "hej",
+    "id": "3",
+  },
+  Object {
+    "a": "hej",
+    "b": "hej",
+    "id": "4",
+  },
+  Object {
+    "a": null,
+    "b": "hej",
+    "id": "6",
+  },
+]
+`;
+
+exports[`filter on text input filterOnTextInput returns correct for text: abc 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "text": "abcdef",
+  },
+  Object {
+    "id": "2",
+    "text": "abcfff",
+  },
+]
+`;
+
+exports[`filter on text input filterOnTextInput returns correct for text: abcd 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "text": "abcdef",
+  },
+]
+`;
+
+exports[`filter on text input filterOnTextInput returns correct for text: b 1`] = `
+Array [
+  Object {
+    "id": "3",
+    "text": "bcdef",
+  },
+]
+`;
+
+exports[`filter on text input filterOnTextInput returns correct for text: e 1`] = `Array []`;
