@@ -38,12 +38,17 @@ const ListContainer = styled.div`
   }
 `;
 
+const Header = styled.h1`
+  font-size: 1.5em;
+  padding: 20px 10px;
+`;
+
 const Colleagues = ({ allColleagues }) => {
   const [colleagues, setColleagues] = useState(allColleagues);
 
   return (
     <Container>
-      <h1>The fellowship of the tretton37</h1>
+      <Header>The fellowship of the tretton37</Header>
       <FilterAndSort
         onFilter={setColleagues}
         allItems={allColleagues}

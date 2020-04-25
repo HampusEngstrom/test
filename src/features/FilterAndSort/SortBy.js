@@ -4,11 +4,11 @@ import { Label } from './../../components';
 
 const SortContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   select {
     padding: 5px;
-    width: 100px;
+    width: 80px;
   }
 `;
 

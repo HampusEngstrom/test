@@ -4,7 +4,8 @@ import { getUniques } from '../../helpers';
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 `;
 
 const TextCheckbox = styled.div`
@@ -27,7 +28,7 @@ const FilterMultipleChoice = ({
 }) => {
   const alts = getUniques(
     allItems.reduce((acc, item) => [...acc, item[filterByAttr]], []),
-  );
+  ).sort();
   return (
     <Container>
       {alts.map((alt, index) => (

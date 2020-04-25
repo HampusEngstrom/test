@@ -28,16 +28,19 @@ const TWITTER = 'twitter';
 const STACKOVERFLOW = 'stackOverflow';
 
 const FilterContainer = styled.div`
-  width: calc(100% - 20px);
+  width: calc(100% - 2px);
   min-height: 50px;
   background-color: #fcfdff;
-  margin: 20px 10px;
   display: flex;
   justify-content: center;
   box-shadow: 0px 0px 5px 0px lightgray;
   border: 1px solid #eeeeee;
   flex-direction: column;
   flex-wrap: wrap;
+  @media (min-width: 480px) {
+    width: calc(100% - 30px);
+    margin: 15px;
+  }
 `;
 
 const SocialMediaFilter = styled.div`
@@ -151,6 +154,8 @@ class FilterAndSort extends React.PureComponent {
             handleChange={this.toggleMultipleChoices(OFFICE)}
             active={this.state.multipleChoices[OFFICE]}
           />
+        </Row>
+        <Row>
           <SocialMediaFilter>
             <FilterSingleChoice
               handleChange={this.toggleSingleChoice(GITHUB)}
