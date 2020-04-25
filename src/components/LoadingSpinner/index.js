@@ -19,6 +19,13 @@ const Spinner = styled.div`
   }
 `;
 
+const SmallSpinner = styled(Spinner)`
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #7fc464;
+`;
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -30,10 +37,14 @@ const Container = styled.div`
   right: 0;
 `;
 
-const LoadingSpinner = () => (
+export const LoadingSpinner = () => (
   <Container>
     <Spinner />
   </Container>
 );
 
-export default LoadingSpinner;
+export const SmallLoadingSpinner = () => (
+  <Container>
+    <SmallSpinner />
+  </Container>
+);

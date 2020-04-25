@@ -1,8 +1,9 @@
 import ConditionalRender from './ConditionalRender';
-import LoadingSpinner from './LoadingSpinner';
 import Colleague from './Colleague';
+
+export * from './LoadingSpinner';
 export * from './Elements';
 export * from './SocialMediaButtons';
 export * from './List';
 
-export { ConditionalRender, LoadingSpinner, Colleague };
+export { ConditionalRender, Colleague };

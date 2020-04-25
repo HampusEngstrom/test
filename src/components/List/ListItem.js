@@ -6,7 +6,7 @@ const Item = styled.div`
   flex-direction: column;
   border: 1px solid gray;
   width: 100%;
-  margin: 10px;
+  margin: 15px;
 `;
 
 const ItemContainer = styled.li`

@@ -25,6 +25,7 @@ export const TextRow = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
+  padding: 4px 0;
 `;
 
 export const Text = styled.p`
