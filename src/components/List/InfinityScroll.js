@@ -2,19 +2,24 @@ import React from 'react';
 
 class InfinityScroll extends React.PureComponent {
   state = { index: 12 };
+  loadMoreThreshold = 0.9;
 
-  onScroll = () => {
-    const moreItemsExists =
-      this.state.index < this.props.items.length;
-    const scrollProgress = this.getScrollProgress();
-    if (scrollProgress > 0.9 && moreItemsExists) {
-      this.setState(({ index }) => ({ index: index + index / 2 }));
-    }
-  };
+  areThereMoreItems = () =>
+    this.state.index < this.props.items.length;
 
   getScrollProgress = () =>
     window.pageYOffset /
     (document.body.scrollHeight - window.innerHeight);
+
+  shouldLoadMoreItems = () =>
+    this.getScrollProgress() > this.loadMoreThreshold &&
+    this.areThereMoreItems();
+
+  onScroll = () => {
+    if (this.shouldLoadMoreItems()) {
+      this.setState(({ index }) => ({ index: index + index / 2 }));
+    }
+  };
 
   componentDidMount() {
     window.addEventListener('scroll', this.onScroll);
