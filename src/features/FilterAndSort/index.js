@@ -14,6 +14,12 @@ import TwitterIcon from '../../assets/twitter.png';
 import { sort } from '../../helpers/array/';
 import { Row } from '../../components';
 
+import {
+  filterOnMultipleChoices,
+  filterOnTextInput,
+  filterOnSingleChoice,
+} from './filters';
+
 const NAME = 'name';
 const OFFICE = 'office';
 const GITHUB = 'gitHub';
@@ -42,16 +48,11 @@ const SocialMediaFilter = styled.div`
 class FilterAndSort extends React.PureComponent {
   state = {
     activeSort: null,
-    activeFilter: {
+    multipleChoices: {
       [OFFICE]: [],
     },
-    activeBooleanFilter: {
-      [GITHUB]: false,
-      [LINKEDIN]: false,
-      [TWITTER]: false,
-      [STACKOVERFLOW]: false,
-    },
-    activeTextFilter: {},
+    singleChoice: {},
+    textInput: {},
   };
 
   sortAlternatives = [NAME, OFFICE];
@@ -65,47 +66,46 @@ class FilterAndSort extends React.PureComponent {
 
   setFilterAttr = (attr) => {
     this.setState(
-      (state) => ({ ...state, activeFilter: attr }),
+      (state) => ({ ...state, multipleChoices: attr }),
       this.update,
     );
   };
 
-  toggleFilterAttr = (key) => (value) => {
-    const { setFilterAttr } = this;
-    const { activeFilter } = this.state;
-    const activeKeyFilter = activeFilter[key] || [];
+  toggleMultipleChoices = (key) => (value) => {
+    const { multipleChoices } = this.state;
+    const activeKeyFilter = multipleChoices[key] || [];
     const isSet = activeKeyFilter.find((attr) => attr === value);
     if (isSet) {
-      setFilterAttr({
-        ...activeFilter,
-        [key]: activeFilter[key].filter((attr) => attr !== value),
+      this.setFilterAttr({
+        ...multipleChoices,
+        [key]: multipleChoices[key].filter((attr) => attr !== value),
       });
     } else {
-      setFilterAttr({
-        ...activeFilter,
+      this.setFilterAttr({
+        ...multipleChoices,
         [key]: [...activeKeyFilter, value],
       });
     }
   };
 
-  toggleFilterBoolean = (key) => () => {
+  toggleSingleChoice = (key) => () => {
     this.setState(
       (state) => ({
         ...state,
-        activeBooleanFilter: {
-          ...state.activeBooleanFilter,
-          [key]: !state.activeBooleanFilter[key],
+        singleChoice: {
+          ...state.singleChoice,
+          [key]: !state.singleChoice[key],
         },
       }),
       this.update,
     );
   };
 
-  setFilterText = (key) => (value) => {
+  setText = (key) => (value) => {
     this.setState(
       (state) => ({
         ...state,
-        activeTextFilter: { ...state.activeTextFilter, [key]: value },
+        textInput: { ...state.textInput, [key]: value },
       }),
       this.update,
     );
@@ -113,41 +113,19 @@ class FilterAndSort extends React.PureComponent {
 
   update() {
     const {
-      activeFilter,
       activeSort,
-      activeTextFilter,
-      activeBooleanFilter,
+      multipleChoices,
+      textInput,
+      singleChoice,
     } = this.state;
 
-    const activeFilterKeys = Object.keys(activeFilter).filter(
-      (key) => activeFilter[key].length > 0,
-    );
-    const activeTextFilterKeys = Object.keys(activeTextFilter);
-    const activeBooleanFilterKeys = Object.keys(
-      activeBooleanFilter,
-    ).filter((key) => activeBooleanFilter[key]);
-
     const filteredItems = this.props.allItems
-      .filter((item) => {
-        const checkboxesOK = activeFilterKeys.every((key) =>
-          activeFilter[key].includes(item[key]),
-        );
-        return checkboxesOK;
-      })
-      .filter((item) => {
-        const textOK = activeTextFilterKeys.every(
-          (key) => item[key].indexOf(activeTextFilter[key]) === 0,
-        );
-        return textOK;
-      })
-      .filter((item) => {
-        const booleansOK = activeBooleanFilterKeys.every(
-          (key) => item[key],
-        );
-        return booleansOK;
-      });
+      .filter(filterOnMultipleChoices(multipleChoices))
+      .filter(filterOnTextInput(textInput))
+      .filter(filterOnSingleChoice(singleChoice));
 
     sort(filteredItems)(activeSort);
+
     this.props.onFilter(filteredItems);
   }
 
@@ -157,8 +135,8 @@ class FilterAndSort extends React.PureComponent {
         <Row>
           <FilterByText
             filterByAttr={NAME}
-            handleChange={this.setFilterText(NAME)}
-            active={this.state.activeTextFilter[NAME]}
+            handleChange={this.setText(NAME)}
+            active={this.state.textInput[NAME]}
           />
           <SortBy
             sortByAttrs={this.sortAlternatives}
@@ -170,31 +148,31 @@ class FilterAndSort extends React.PureComponent {
           <FilterByCheckbox
             allItems={this.props.allItems}
             filterByAttr={OFFICE}
-            handleChange={this.toggleFilterAttr(OFFICE)}
-            active={this.state.activeFilter[OFFICE]}
+            handleChange={this.toggleMultipleChoices(OFFICE)}
+            active={this.state.multipleChoices[OFFICE]}
           />
           <SocialMediaFilter>
             <FilterByBoolean
-              handleChange={this.toggleFilterBoolean(GITHUB)}
-              active={this.state.activeBooleanFilter[GITHUB]}
+              handleChange={this.toggleSingleChoice(GITHUB)}
+              active={this.state.singleChoice[GITHUB]}
             >
               {<img src={GithubIcon} alt="" />}
             </FilterByBoolean>
             <FilterByBoolean
-              handleChange={this.toggleFilterBoolean(STACKOVERFLOW)}
-              active={this.state.activeBooleanFilter[STACKOVERFLOW]}
+              handleChange={this.toggleSingleChoice(STACKOVERFLOW)}
+              active={this.state.singleChoice[STACKOVERFLOW]}
             >
               {<img src={StackOverflowIcon} alt="" />}
             </FilterByBoolean>
             <FilterByBoolean
-              handleChange={this.toggleFilterBoolean(LINKEDIN)}
-              active={this.state.activeBooleanFilter[LINKEDIN]}
+              handleChange={this.toggleSingleChoice(LINKEDIN)}
+              active={this.state.singleChoice[LINKEDIN]}
             >
               {<img src={LinkedInIcon} alt="" />}
             </FilterByBoolean>
             <FilterByBoolean
-              handleChange={this.toggleFilterBoolean(TWITTER)}
-              active={this.state.activeBooleanFilter[TWITTER]}
+              handleChange={this.toggleSingleChoice(TWITTER)}
+              active={this.state.singleChoice[TWITTER]}
             >
               {<img src={TwitterIcon} alt="" />}
             </FilterByBoolean>
