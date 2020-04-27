@@ -30,9 +30,13 @@ class InfinityScroll extends React.PureComponent {
   }
 
   render() {
-    return this.props.render({
-      setOfItems: this.props.items.slice(0, this.state.index),
-    });
+    if (this.state.index <= this.props.items.length) {
+      return this.props.render({
+        setOfItems: this.props.items.slice(0, this.state.index),
+      });
+    } else {
+      return this.props.render({ setOfItems: this.props.items });
+    }
   }
 }
 
