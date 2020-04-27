@@ -1,41 +1,81 @@
-### 10pt has been done in this sprint
+# Sprint
 
-2pt [UX] Responsive design
-1pt [UX] Fancy animations
-1pt [FUNCT] Sort by name and office
-1pt [FUNCT] Filter by name and office
-1pt [FUNCT] Filter by contact links
-2pt [FUNCT] Infinity scroll
-2pt [TEST] Unit tests
+- 2pt [UX] Responsive design
+- 1pt [UX] Fancy animations
+- 1pt [FUNCT] Sort by name and office
+- 1pt [FUNCT] Filter by name and office
+- 1pt [FUNCT] Filter by contact links
+- 2pt [FUNCT] Infinity scroll
+- 2pt [TEST] Unit tests
 
-[Unit tests]: It is important to have testing included, it is an easy way of decreasing the number of issues.
-[Infinity scroll]: Due to performance issues loading 200 images at once.
-[Sort and filtering]: To increase the level of complexity in the application.
-[Responsive design]: Smaller devices are often used and should be supported.
-[Fancy animations]: Preloaders for the whole app and the profile images, because it gives a nice feeling to it.
+**10 points in total**
+
+## Why did i choose the features i did?
+
+- _Unit tests_: It is important to have testing included, it is an easy way of decreasing the number of issues.
+- _Infinity scroll_: Due to performance issues loading 200 images at once.
+- _Sort and filtering functionality_: To increase the level of complexity in the application.
+- _Responsive design_: Smaller devices are often used and should be supported.
+- _Fancy animations_: Preloaders for the whole app and the profile images, because it gives a nice feeling to it. It makes the app feel thought through and it makes it ok to wait a little longer when loading the content.
 
 # Design
 
 I have gone for a separation between model and view, not a technically correct MVC but more like a MVVM.
 
-![Overview]("./overview.jpg")
+![Overview](./overview.jpg)
 
 ### View & View Controller
 
-We have some components which is interactable in the filter area, input field, buttons, sort etc. a view for each functionality. They are all just collecting user input for the parent, class FilterAndSort.
-Then we have the main view, the list of items/colleagues, it only shows the list that it is provided with. It is not interactable. Easily replaced by a new view, like for example in the task "Enable switch between a grid and a different view"
+There are some some interactive views in the filter area:
+
+- The text input
+- The single choice buttons (booleans), aka the social media buttons.
+- The multiple choice buttons (office)
+- The sort drop down
+
+A view for each functionality. They are all just collecting user input for their parent, the FilterAndSort(**ViewModel**). Each filter input owns the **ViewModel** where they have a state for their own.
+
+Then we have the main view, the list of colleagues. The main view only shows the list that it is provided with. The list is not interactive, and it is easily replaced with a new view, like for example in the task "Enable switch between a grid and a different view".
 
 ### ViewModel
 
-**class FilterAndSort**
-Has a state for the whole filter and sort setup. It has the rules and logic for how the model is manipulated.
-The singleChoice (boolean) alternatives, aka the social media buttons. Each filter and sort component
+**FilterAndSort**
+The FilterAndSort has a state for the whole filter as well as the sort setup. It has the rules and logic for how the model is manipulated.
+It owns a reference to its parent, the Colleagues component, which is the **Model**.
+The filter and sort components (children) each updates the state of FilterAndSort, which is not only reflected in the components themselves but also in the **Model** Colleagues. Colleagues then updates the **main View** which is the List component.
 
 ### Model
+
+**Colleagues**
+The Colleagues component is the **Model** it has the state, the array of colleagues. It provides the FilterAndSort (ViewModel) with functionality for updating the model.
+
+### Main View
+
+The List component, wrapped in a infinity scroll component, is the main **View**. The main view is not interactive, it only shows what it is provided. It is easily replaced, it has no business logic.
+
+# Way of working
+
+I use some Semantics for Commit Messages in order to provide more information about the commit. Such as: feat, fix, style, chore, etc.
+
+I work with feature branching meaning:
+
+- I chose a feature to do
+- I branch out from master
+- I implement feature with tests
+- I merge into master (usually verified by testers and developers)
+- Then i do the same for the next feature.
+
+I also setup the test script to run on commits with husky so that i don't commit anything that is not working.
+
+In this project i use React with Styled Components in order to decrease the use of CSS/LESS files. I think it gives a better overview of what is included and what is happening. There is less searching for the place to be when adding styling.
 
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+# Installation
+
+The app is installed with yarn
 
 ## Available Scripts
 
