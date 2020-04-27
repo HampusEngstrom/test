@@ -8,11 +8,11 @@
 2pt [FUNCT] Infinity scroll
 2pt [TEST] Unit tests
 
-[Unit tests]: It is important to have some testing included to decrease the number of bugs with small effort.
+[Unit tests]: It is important to have testing included, it is an easy way of decreasing the number of issues.
 [Infinity scroll]: Due to performance issues loading 200 images at once.
-[Sort and filtering]: To up the level of complexity in the application.
+[Sort and filtering]: To increase the level of complexity in the application.
 [Responsive design]: Smaller devices are often used and should be supported.
-[Fancy animations]: Preloaders for the app and the images, because it gives a nice feeling to it.
+[Fancy animations]: Preloaders for the whole app and the profile images, because it gives a nice feeling to it.
 
 ---
 
