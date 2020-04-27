@@ -75,7 +75,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Installation
 
-The app is installed with yarn
+Download the project and run yarn to install.
 
 ## Available Scripts
 
